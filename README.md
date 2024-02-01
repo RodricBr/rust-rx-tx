@@ -1,5 +1,6 @@
 # Rust RX & TX TCP Connection
 TCP Server -> Client (accepts multiple clients) Chat Connection with Rust <br>
+**Explicação sobre cada linha escrita nos comentários.**
 
 - On Server console, start the server first:
 ```bash
