@@ -19,7 +19,7 @@ TCP Server -> Client (accepts multiple clients) Chat Connection with Rust <br>
 
 - Practical example:
 <p align="center">
-  <img border="0" src="./assets/unknown.png" alt="Example image">
+  <img border="0" src="./assets/untitled.png" alt="Example image">
 </p>
 
 <br>
