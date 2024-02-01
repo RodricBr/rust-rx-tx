@@ -10,3 +10,8 @@ TCP Chat Connection using Rust
 ```bash
 ~/chat/client/ $ cargo run
 ```
+
+- Practical example:
+<p align="center">
+  <img border="0" src="./assets/unknown.png" alt="Example image">
+</p>
