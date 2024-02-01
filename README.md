@@ -8,12 +8,12 @@ TCP Server -> Client (accepts multiple clients) Chat Connection with Rust <br>
 > Make sure to run `cargo build` to build the binary file.
 
 - On Server console, start the server first:
-```bash
+```console
 ~/chat/server/ $ cargo run
 ```
 
 - On Client console:
-```bash
+```console
 ~/chat/client/ $ cargo run
 ```
 
