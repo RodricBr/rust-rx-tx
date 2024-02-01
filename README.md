@@ -2,6 +2,9 @@
 TCP Server -> Client (accepts multiple clients) Chat Connection with Rust <br>
 **Explicação sobre cada linha escrita nos comentários.**
 
+> [!NOTE]
+> Make sure to run `cargo build` to build the binary file.
+
 - On Server console, start the server first:
 ```bash
 ~/chat/server/ $ cargo run
