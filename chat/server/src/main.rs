@@ -15,10 +15,10 @@ fn sleep(){
 fn main(){
   // Fazendo o vínculo da conexão TCP com o IPv4 referênciado na variável constante "LOCAL"
   // Se o vínculo (bind) falhar joga a mensagem de pânico abaixo VVVVVV
-  let server = TcpListener::bind(LOCAL).expect("Listener failed to bind");
+  let server = TcpListener::bind(LOCAL).expect("\x1b[31mListener failed to bind\x1b[0m");
 
   // Modo de "non-blocking" permite que nosso servidor cheque constantemente por mensagens
-  server.set_nonblocking(true).expect("Failed to initialize non-blocking");
+  server.set_nonblocking(true).expect("\x1b[31mFailed to initialize non-blocking\x1b[0m");
 
   // Criando um vetor mutável chamado "clients" que nos permitirá a conexão de múltiplos clientes
   // de uma vez só ao invés de apenas 1 ou 2
@@ -37,14 +37,14 @@ fn main(){
     // se tivermos um Ok então sinal que deu certo. O formato Ok() no rust é tipo um if.
     if let Ok((mut socket, addr)) = server.accept(){
       // O "socket" será a stream TCP que está se conectando e o "addr" será o endereço do socket.
-      println!("Client {} connected", addr);
-      
+      println!("\x1b[32m> Client\x1b[0m\x1b[33m {} \x1b[0m\x1b[32mconnected\x1b[0m", addr);
+
       // Clonando o TX (transmissor)
       let tx = tx.clone();
 
       // Tentando clonar o socket e botando ele no vetor "clients"
       // Se houver um erro a mensagem abaixo de pânico será exibida.
-      clients.push(socket.try_clone().expect("Failed to clone client"));
+      clients.push(socket.try_clone().expect("\x1b[31mFailed to clone client\x1b[0m"));
       // A razão pela clonagem do socket é para que possamos utilizar com o thread
 
       // Spawnando a thread com o move closure e criando um loop onde um buffer mutável será
@@ -53,7 +53,7 @@ fn main(){
       // em uma variável ou passar como argumentos para outras funções.
       thread::spawn(move || loop{
         let mut buff = vec![0; MSG_SIZE];
-        
+
         // Isso irá ler a nossa mensagem no nosso buffer
         match socket.read_exact(&mut buff){
           Ok(_) => {
@@ -63,15 +63,15 @@ fn main(){
             let msg = buff.into_iter().take_while(|&x| x != 0).collect::<Vec<_>>();
 
             // Convertendo aqueles pedaços de strings em uma string final e atribuindo isso à variável "msg"
-            let msg = String::from_utf8(msg).expect("Invalid UTF8 message");
-            
+            let msg = String::from_utf8(msg).expect("\x1b[31mInvalid UTF8 message\x1b[0m");
+
             // Printando o endereço IPv4 que enviou a mensagem junto com a mensagem a seguir.
             // "msg" com uma flag de debug (:?)
             // doc.rust-lang.org/std/fmt/trait.Debug.html#examples
-            println!("{}: {:?}", addr, msg);
-      
+            println!("\x1b[32m{} -->\x1b[0m {:?}", addr, msg);
+
             // Enviando a mensagem através do transmissor (tx) até o receptor (rx)
-            tx.send(msg).expect("Failed to send message to reciever (rx)");
+            tx.send(msg).expect("\x1b[31mFailed to send message to reciever (rx)\x1b[0m");
           },
           // Checando o erro dentro do erro e se o tipo do erro (error kind)
           // for igual à um tipo de erro que poderia bloquear o nosso modo "non-blocking"
@@ -82,7 +82,7 @@ fn main(){
           // importa o que tiver dentro dele, por isso o underscore "_") iremos apenas
           // fechar a conexão com o client
           Err(_) => {
-            println!("Closing connection with: {}", addr);
+            println!("\x1b[33m< Closing connection with:\x1b[0m {}\n", addr);
             break; // Quebrando pra fora do loop
           }
         }
