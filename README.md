@@ -2,6 +2,8 @@
 TCP Server -> Client (accepts multiple clients) Chat Connection with Rust <br>
 **Explicação sobre cada linha escrita nos comentários.**
 
+<br>
+
 > [!NOTE]
 > Make sure to run `cargo build` to build the binary file.
 
