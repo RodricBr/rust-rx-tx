@@ -17,6 +17,13 @@ fn main(){
   // Se o vínculo (bind) falhar joga a mensagem de pânico abaixo VVVVVV
   let server = TcpListener::bind(LOCAL).expect("\x1b[31mListener failed to bind\x1b[0m");
 
+  // Conceito de blocking:
+  // "blocking" em operações IO é quando o programa fica parando em algum momento esperando algo
+  // acontecer depois de deixar o evento continuar e prosseguir com o programa.
+  // O "nonblocking" checa se um evento está aguardando algo acontecer, se não tiver nada disponível ele continuará o programa
+  // até que algo esteja disponível para aquele evento ser disparado.
+  // O nonblocking basicamente não nos deixa estagnado em um evento se nada estiver acontecendo nele
+  
   // Modo de "non-blocking" permite que nosso servidor cheque constantemente por mensagens
   server.set_nonblocking(true).expect("\x1b[31mFailed to initialize non-blocking\x1b[0m");
 
