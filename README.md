@@ -1,6 +1,8 @@
 # Rust RX & TX TCP Connection
 TCP Server -> Client (accepts multiple clients) Chat Connection with Rust <br>
-**Explicação sobre cada linha escrita nos comentários.**
+This is kinda the same concept for a TCP Server-Victim/Client Reverse Shell that I've been using/will use on <br>
+other projects and I decided it was high time to add to my GitHub repo as a demo. <br>
+<br> PT-BR: **Explicação sobre cada linha escrita nos comentários do programa.**
 
 <br>
 
